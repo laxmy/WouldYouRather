@@ -1,6 +1,6 @@
-import { _getUsers,_getQuestions,_saveQuestionAnswer } from '../helpers/_DATA'
+import { _getUsers,_getQuestions,_saveQuestionAnswer,_saveQuestion } from '../helpers/_DATA'
 import { getUsers,updateUserAnswer } from './users'
-import{ getQuestions,answerQuestion } from './questions'
+import{ getQuestions,answerQuestion, addNewQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 
 
@@ -32,5 +32,14 @@ export function handleAnswerQuestion(info){
       .then((questions) => {
         dispatch(fetchInitialQuestions(questions))
       })
+  }
+}
+
+export function handleAddQuestion(info){
+  return (dispatch)=>{
+    return _saveQuestion(info)
+     .then((question)=>{
+       dispatch(addNewQuestion(question))
+     })
   }
 }

@@ -10,6 +10,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import Button from '@material-ui/core/Button'
+import Avatar from '@material-ui/core/Avatar'
 
 
 class UnansweredQuestionCard extends Component{
@@ -35,7 +36,9 @@ class UnansweredQuestionCard extends Component{
 
     return(
       <Card className='question-card'>
-        <CardHeader>Would you Rather</CardHeader>
+        <CardHeader title="Would You Rather" avatar={
+            <Avatar alt={question.author} src=""/>
+          }></CardHeader>
         <CardContent>
             <FormControl component="fieldset" >
               <RadioGroup value={this.state.answerOption}  onChange={this.handleChange}>

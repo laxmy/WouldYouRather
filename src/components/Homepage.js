@@ -11,6 +11,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 
 
@@ -22,16 +24,18 @@ class Homepage extends Component{
   toggleTab = (event, value) =>{
    this.setState({ value })
   }
-  //// TODO: change these two functions
-  getUnansweredList(){
-    return this.props.questions.filter(q => q.optionOne.votes.includes(this.props.authedUser)||q.optionTwo.votes.includes(this.props.authedUser));
-  }
-  getAnsweredList(){
-    return this.props.questions.filter(q => !(q.optionOne.votes.includes(this.props.authedUser)||q.optionTwo.votes.includes(this.props.authedUser)));
+
+  getAnsweredQuestionsList  = ()=>{
+    return this.props.questions.filter(q => (q.optionOne.votes.includes(this.props.authedUser)||q.optionTwo.votes.includes(this.props.authedUser)))
   }
 
+  getUnAnsweredQuestionsList =()=> {
+    return this.props.questions.filter(q=> !this.getAnsweredQuestionsList().includes(q))
+  }
+
+
   render(){
-    let listOfQuestions = this.state.value ==="unanswered" ? this.getUnansweredList() : this.getAnsweredList();
+    let listOfQuestions = this.state.value ==="unanswered" ? this.getUnAnsweredQuestionsList() : this.getAnsweredQuestionsList();
     return (
       <div>
         <Paper>
@@ -63,11 +67,14 @@ class Homepage extends Component{
             </ListItem>
           ))}
         </List>
+        <Button variant="fab" aria-label="Add" className='add-btn'>
+        <Link to='/add'><AddIcon /></Link>
+      </Button>
      </div>
     );
   }
 }
-function mapStateToProps({ questions, authedUser }){
+function mapStateToProps({ questions, authedUser,users }){
  return {questions: Object.keys(questions).map(key=> questions[key]),authedUser};
 }
 

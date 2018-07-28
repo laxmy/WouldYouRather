@@ -7,12 +7,11 @@ import UnansweredQuestionCard from './UnansweredQuestionCard'
 class Question extends Component {
     render() {
         const { question, hasAnswered } = this.props
-
         if(hasAnswered){
-            return <AnsweredQuestionCard id={question.id}/>
-        } else {
-            return <UnansweredQuestionCard id={question.id}/>
-        }
+                return <AnsweredQuestionCard id={question.id}/>
+            } else {
+                return <UnansweredQuestionCard id={question.id}/>
+            }
     }
 }
 
