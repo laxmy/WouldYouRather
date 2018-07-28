@@ -23,7 +23,7 @@ class NewQuestion extends Component{
       {
       optionOneText: this.state.optionOne,
       optionTwoText: this.state.optionTwo,
-      author:this.props.authedUser}))
+      authorId:this.props.authedUser}))
   }
 
   handleChange = event => {
@@ -58,7 +58,7 @@ class NewQuestion extends Component{
                fullWidth
                margin="normal"
              />
-             <Button type='submit'>SUBMIT</Button>
+             <Button type='submit' color="secondary" disabled={this.state.optionOne === '' || this.state.optionTwo === ''}>SUBMIT</Button>
            </form>
         </CardContent>
       </Card>

@@ -12,19 +12,20 @@ a{
   right:0;
 }
 
-.nav-bar{
-  background-color: #2E4668;
+.title{
+  font-family:Kalam;
 }
 .question-card {
    max-width: 400px;
-   font-family:Kalam;
-   background-color:red;
    margin: 100px auto;
    border-radius: 3px;
  }
+.card-header{
+  background-color: #ffab00;
+}
 
  .table-header{
-   background-color: #DOA331;
+   color: #DOA331;
  }
 
 .roomy-listItem{
@@ -40,6 +41,6 @@ a{
 
 .option-separator{
   text-align: center;
-  color: blue;
+  color: #2E4668;
   padding: 0.5em;
 }

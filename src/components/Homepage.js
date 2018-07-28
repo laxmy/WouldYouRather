@@ -42,8 +42,8 @@ class Homepage extends Component{
           <Tabs
             value={this.state.value}
             onChange={this.toggleTab}
-            indicatorColor="primary"
-            textColor="primary"
+            indicatorColor="secondary"
+            textColor="secondary"
             centered>
             <Tab label="Answered" value="answered"/>
             <Tab label="Unanswered" value="unanswered"/>
@@ -67,7 +67,7 @@ class Homepage extends Component{
             </ListItem>
           ))}
         </List>
-        <Button variant="fab" aria-label="Add" className='add-btn'>
+        <Button variant="fab" aria-label="Add" color="secondary">
         <Link to='/add'><AddIcon /></Link>
       </Button>
      </div>

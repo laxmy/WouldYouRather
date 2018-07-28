@@ -36,16 +36,16 @@ class UnansweredQuestionCard extends Component{
 
     return(
       <Card className='question-card'>
-        <CardHeader title="Would You Rather" avatar={
-            <Avatar alt={question.author} src=""/>
-          }></CardHeader>
+        <CardHeader className="card-header" title="Would You Rather" avatar={
+            <Avatar alt={this.props.author.name} src={this.props.author.avatarURL}/>}
+            subheader={`Posted By ${this.props.author.name}`}/>
         <CardContent>
             <FormControl component="fieldset" >
               <RadioGroup value={this.state.answerOption}  onChange={this.handleChange}>
                 <FormControlLabel value="optionOne" control={<Radio />}  label={ question.optionOne.text } />
                 <FormControlLabel value="optionTwo" control={<Radio />} label={ question.optionTwo.text } />
               </RadioGroup>
-              <Button color="secondary" onClick={this.handleSubmit}>Submit</Button>
+              <Button variant="contained" color="secondary" onClick={this.handleSubmit} disabled={!this.state.answerOption || this.state.answerOption.Length <= 0}>Submit</Button>
             </FormControl>
         </CardContent>
       </Card>
@@ -53,11 +53,12 @@ class UnansweredQuestionCard extends Component{
   }
 }
 
-function mapStateToProps({ authedUser, questions },{ id }){
+function mapStateToProps({ authedUser, questions, users },{ id }){
 
   return{
     authedUser: authedUser,
-    question: questions[id]
+    question: questions[id],
+    author: users[questions[id].author]
   }
 }
 export default connect(mapStateToProps)(UnansweredQuestionCard)

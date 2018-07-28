@@ -13,6 +13,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
+import Avatar from '@material-ui/core/Avatar'
 
 class AnsweredQuestionCard extends Component{
 
@@ -21,7 +22,10 @@ class AnsweredQuestionCard extends Component{
 
     return(
       <Card className='question-card'>
-        <CardHeader title="Would you Rather"></CardHeader>
+        <CardHeader title="Would You Rather" className="card-header" avatar={
+            <Avatar alt={this.props.author.name} src={this.props.author.avatarURL}/>
+          } subheader={`Posted By ${this.props.author.name}`}/>
+
         <CardContent>
           <div>
             <Table>
@@ -56,11 +60,12 @@ class AnsweredQuestionCard extends Component{
   }
 }
 
-function mapStateToProps({ authedUser, questions },props){
+function mapStateToProps({ authedUser, questions, users },props){
 
   return{
     authedUser: authedUser,
-    question: questions[props.id]
+    question: questions[props.id],
+    author: users[questions[props.id].author]
   }
 }
 export default connect(mapStateToProps)(AnsweredQuestionCard)

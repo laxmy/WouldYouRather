@@ -4,7 +4,7 @@ import{ getQuestions,answerQuestion, addNewQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 
 
-const AUTHED_USERID ="johndoe";
+const AUTHED_USERID ="hobbes";
 
 //Return a function as redux thunk expects which on resolving will dispatch the actions to reducers
 export function fetchInitialUsers(){
