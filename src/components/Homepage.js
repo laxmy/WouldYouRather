@@ -69,9 +69,10 @@ class Homepage extends Component{
               </ListItem>
             ))}
           </List>
-          <Button variant="fab" aria-label="Add" color="secondary">
-          <Link to='/add'><AddIcon /></Link>
-        </Button>
+
+          <Link className="add-item" to='/add'>
+            <Button variant="fab" color="secondary"><AddIcon /></Button>
+          </Link>  
        </div>
       )
     }

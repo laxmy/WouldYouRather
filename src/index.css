@@ -6,10 +6,10 @@ body {
 a{
   text-decoration: none;
 }
-.add-btn{
+.add-item{
   position: fixed;
-  bottom:0;
-  right:0;
+  right: 25px;
+  bottom: 25px;
 }
 .user-option{
 padding:10px;
@@ -47,4 +47,8 @@ padding:10px;
   text-align: center;
   color: #2E4668;
   padding: 0.5em;
+}
+
+.loggedIn-icon{
+ 
 }
