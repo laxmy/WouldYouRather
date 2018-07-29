@@ -24,9 +24,10 @@ padding:10px;
    margin: 100px auto;
    border-radius: 3px;
  }
+
 .card-header{
   background-color: #ffab00;
-}
+ }
 
  .table-header{
    color: #DOA331;
@@ -47,8 +48,4 @@ padding:10px;
   text-align: center;
   color: #2E4668;
   padding: 0.5em;
-}
-
-.loggedIn-icon{
- 
 }

@@ -45,7 +45,7 @@ class Navbar extends Component{
                 <Link to='/leaderboard'>
                   <Button color="secondary">LeaderBoard</Button>
                 </Link>
-                <Button className="loggedIn-icon"
+                <Button
                   aria-owns={anchorEl ? 'simple-menu' : null}
                   aria-haspopup="true"
                   onClick={this.handleClick}>
@@ -63,7 +63,7 @@ class Navbar extends Component{
                   </Menu>
               </div>
               :  <Link to='/login'>
-                  <Button className="loggedIn-icon" color="secondary">Login</Button>
+                  <Button color="secondary">Login</Button>
                 </Link>
             }
 
