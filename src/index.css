@@ -11,12 +11,16 @@ a{
   bottom:0;
   right:0;
 }
+.user-option{
+padding:10px;
+}
 
 .title{
   font-family:Kalam;
+  padding: 5px;
 }
 .question-card {
-   max-width: 400px;
+   max-width: 500px;
    margin: 100px auto;
    border-radius: 3px;
  }

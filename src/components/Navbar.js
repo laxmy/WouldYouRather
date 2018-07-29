@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link,Redirect } from 'react-router-dom'
 
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import Avatar from '@material-ui/core/Avatar'
+
 
 class Navbar extends Component{
   render(){
@@ -17,14 +17,35 @@ class Navbar extends Component{
             <Typography variant="title" color="inherit" className="title">
               Would you Rather
             </Typography>
-            <Link to='/leaderboard'><Button>LeaderBoard</Button></Link>
-            <Button><Avatar
-              alt="Hobbes"
-              src="../Mom.jpg"
-              /></Button>
+            {this.props.loggedInUser ?
+              <div>
+                <Link to='/'>
+                  <Button color="secondary">Home</Button>
+                </Link>
+                <Link to='/leaderboard'>
+                  <Button color="secondary">LeaderBoard</Button>
+                </Link>
+                <Button>
+                  <Avatar
+                    alt={this.props.loggedInUser.name}
+                    src={this.props.loggedInUser.avatarURL}
+                    />
+                </Button>
+              </div>
+              :  <Link to='/login'>
+                  <Button color="secondary">Login</Button>
+                </Link>
+            }
+
           </Toolbar>
         </AppBar>
     );
   }
 }
-export default Navbar
+
+function mapStateToProps({authedUser, users}){
+  return{
+    loggedInUser: users[authedUser],
+  }
+}
+export default connect(mapStateToProps)(Navbar)

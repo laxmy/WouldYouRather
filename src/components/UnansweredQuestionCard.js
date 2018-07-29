@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { handleAnswerQuestion} from '../actions/shared'
 //Card import
 import FormControlLabel from '@material-ui/core/FormControlLabel'
@@ -24,7 +25,9 @@ class UnansweredQuestionCard extends Component{
       {
       authedUser:this.props.authedUser,
       qid: this.props.question.id,
-      answer:this.state.answerOption}))
+      answer:this.state.answerOption
+    }))
+
   }
 
   handleChange = event => {
@@ -32,7 +35,8 @@ class UnansweredQuestionCard extends Component{
   }
 
   render(){
-    const {question} = this.props
+    const {question,authedUser} = this.props
+
 
     return(
       <Card className='question-card'>

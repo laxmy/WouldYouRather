@@ -9,8 +9,10 @@ import Question from './components/Question'
 import NewQuestion from './components/NewQuestion'
 import LeaderBoard from './components/LeaderBoard'
 import Navbar from './components/Navbar'
+import Login from './components/Login'
+import NotFound from'./components/NotFound'
 
-import { fetchInitialUsers, fetchInitialQuestions, setAuthedUserID } from './actions/shared';
+import { fetchInitialUsers, fetchInitialQuestions } from './actions/shared';
 
 
 class App extends Component {
@@ -18,7 +20,6 @@ class App extends Component {
   componentDidMount(){
     this.props.dispatch(fetchInitialUsers());
     this.props.dispatch(fetchInitialQuestions());
-    setAuthedUserID(this.props.dispatch);
   }
 
   render() {
@@ -30,9 +31,11 @@ class App extends Component {
             <Switch>
               <div id="ToBeRemoved">
                 <Route path='/' exact component={Homepage} />
+                <Route path='/login' component={Login} />
                 <Route path='/question/:id' component={Question} />
                 <Route path='/add' component={NewQuestion} />
                 <Route path='/leaderboard' component={LeaderBoard}/>
+                <Route path='/404' component={NotFound} />
               </div>
             </Switch>
           </Fragment>

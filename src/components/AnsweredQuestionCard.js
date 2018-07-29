@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleAnswerQuestion} from '../actions/shared'
 //Card import
 
 import Card from '@material-ui/core/Card'
@@ -11,15 +10,17 @@ import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Avatar from '@material-ui/core/Avatar'
+import Tooltip from '@material-ui/core/Tooltip'
+import {getPollPercentage} from '../helpers/utils'
 
 class AnsweredQuestionCard extends Component{
 
   render(){
     const {question} = this.props
-
+    let optionOnePoll = getPollPercentage("optionOne",question);
+    let optionTwoPoll = getPollPercentage("optionTwo",question);
     return(
       <Card className='question-card'>
         <CardHeader title="Would You Rather" className="card-header" avatar={
@@ -27,35 +28,50 @@ class AnsweredQuestionCard extends Component{
           } subheader={`Posted By ${this.props.author.name}`}/>
 
         <CardContent>
-          <div>
-            <Table>
-              <TableHead className="table-header">
-                <TableRow>
-                  <TableCell>Option</TableCell>
-                  <TableCell>Polls</TableCell>
-                  <TableCell> Your answer</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell><p>{ question.optionOne.text }</p></TableCell>
-                  <TableCell>
-                    <CircularProgress  variant="static" value={5} />
-                  </TableCell>
-                  <TableCell> <DoneOutlinedIcon /></TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>  <p>{ question.optionTwo.text }</p> </TableCell>
-                  <TableCell>
-                    <CircularProgress  variant="static" value={5} />
-                  </TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
+
+<div>
+  <p>
+    {question.optionOne.text}
+    <span className="user-option">{question.optionOne.votes.indexOf(this.props.authedUser)>= 0 ?<DoneOutlinedIcon color="primary"/>:null}</span>
+  </p>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <Tooltip title={`${optionOnePoll.percentage}%`}>
+            <CircularProgress  variant="static" size={30} thickness={5} value={optionOnePoll.percentage}>
+            </CircularProgress></Tooltip>
+          </TableCell>
+          <TableCell>
+            {`Voted By ${optionOnePoll.text}`}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+</div>
+<div>
+  <p>
+    {question.optionTwo.text}
+    <span className="user-option" >{question.optionTwo.votes.indexOf(this.props.authedUser)>= 0 ?<DoneOutlinedIcon color="primary"/>:null}</span>
+  </p>
+    <Table>
+      <TableBody>
+        <TableRow>
+          <TableCell>
+            <Tooltip title={`${optionTwoPoll.percentage}%`}>
+            <CircularProgress  variant="static" size={30} thickness={5} value={optionTwoPoll.percentage}>
+            </CircularProgress></Tooltip>
+          </TableCell>
+          <TableCell>
+            {`Voted By ${optionTwoPoll.text}`}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+</div>
+
+</CardContent>
+</Card>
     )
   }
 }
